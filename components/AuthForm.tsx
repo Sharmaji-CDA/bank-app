@@ -9,21 +9,14 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
+import { Form } from "@/components/ui/form"
 // import { Input } from "@/components/ui/input"
 import CustomInput from './CustomInput'
 import { authFormSchema } from '@/lib/utils'
 import { Loader2, Router } from 'lucide-react'
-import { signUp } from '@/lib/actions/user.actions'
+import { signIn, signUp } from '@/lib/actions/user.actions'
 import { useRouter } from 'next/navigation'
+import PlaidLink from './PlaidLink'
  
 
 const AuthForm = ({ type } : { type : string }) => {
@@ -46,16 +39,28 @@ const AuthForm = ({ type } : { type : string }) => {
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
         try {
             if ( type === 'sign-up'){
-                const newUser = await signUp(data);
+                const userData = {
+                    firstName: data.firstName!,
+                    lastName: data.lastName!,
+                    address1: data.address1!,
+                    city: data.city!,
+                    postalCode: data.postalCode!,
+                    state: data.state!,
+                    dateOfBirth: data.dateOfBirth!,
+                    ssn: data.ssn!,
+                    email: data.email,
+                    password: data.password
+                }
+                const newUser = await signUp(userData);
 
                 setUser(newUser);
             }
             if ( type === 'sign-in'){
-                // const response = await signIn({
-                //     email: data.email,
-                //     password: data.password
-                // })
-                // if(response) router.push('/')
+                const response = await signIn({
+                    email: data.email,
+                    password: data.password
+                })
+                if(response) router.push('/sign-in')
             } 
         } catch (error) {
             console.log(error);
@@ -82,7 +87,7 @@ const AuthForm = ({ type } : { type : string }) => {
         </header>
         {user ? (
             <div className='flex flex-col gap-4'>
-                {/* PlaidLink */}
+                <PlaidLink user={user} variant='primary' />
             </div>
         ):(
             <>
