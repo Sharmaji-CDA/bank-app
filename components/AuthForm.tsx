@@ -8,8 +8,8 @@ import { z } from "zod"
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { Button } from "@/components/ui/button"
-import { Form } from "@/components/ui/form"
+import { Button } from "./ui/button";
+import { Form } from "./ui/form";
 // import { Input } from "@/components/ui/input"
 import CustomInput from './CustomInput'
 import { authFormSchema } from '@/lib/utils'
@@ -60,7 +60,7 @@ const AuthForm = ({ type } : { type : string }) => {
                     email: data.email,
                     password: data.password
                 })
-                if(response) router.push('/sign-in')
+                if(response) router.push('/')
             } 
         } catch (error) {
             console.log(error);
@@ -68,8 +68,8 @@ const AuthForm = ({ type } : { type : string }) => {
             setIsLoading(false);
         }
 
-        setIsLoading(true)
-        console.log(values)
+        // setIsLoading(true)
+        // console.log(values)
     }
 
   return (

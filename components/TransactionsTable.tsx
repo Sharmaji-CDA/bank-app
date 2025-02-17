@@ -2,13 +2,12 @@ import React from 'react'
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableHead,
     TableHeader,
     TableRow,
   } from "@/components/ui/table";
-import { cn, formatDateTime, getTransactionStatus, removeSpecialCharacters } from '@/lib/utils'
+import { cn, formatAmount, formatDateTime, getTransactionStatus, removeSpecialCharacters } from '@/lib/utils'
 import { transactionCategoryStyles } from '@/constants'
 
 const CategoryBadge = ({ category }: CategoryBadgeProps) => {
@@ -36,9 +35,9 @@ const TransactionsTable = ({ transactions}: TransactionTableProps) => {
             </TableRow>
         </TableHeader>
         <TableBody>
-            {transactions.map((t: Transaction) => {
+            {transactions && transactions.length > 0 ? (transactions.map((t: Transaction) => {
                 const status = getTransactionStatus(new Date(t.date))
-                const amount = formateAmount(t.amount)
+                const amount = formatAmount(t.amount)
 
                 const isDebit = t.type === 'debit';
                 const isCredit = t.type === 'credit'
@@ -61,7 +60,11 @@ const TransactionsTable = ({ transactions}: TransactionTableProps) => {
 
                     </TableRow>
                 )
-            })}
+            })): (
+                <tr>
+                  <td colSpan={4} className="text-center">No transactions found</td>
+                </tr>
+              )}
         </TableBody>
     </Table>
 
