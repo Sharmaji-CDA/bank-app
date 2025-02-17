@@ -6,7 +6,7 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-  } from "@/components/ui/table";
+  } from "@/components/UI/table";
 import { cn, formatAmount, formatDateTime, getTransactionStatus, removeSpecialCharacters } from '@/lib/utils'
 import { transactionCategoryStyles } from '@/constants'
 

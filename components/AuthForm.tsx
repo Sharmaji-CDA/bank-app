@@ -8,12 +8,12 @@ import { z } from "zod"
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { Button } from "./ui/button";
-import { Form } from "./ui/form";
+import { Button } from "./UI/button"
+import { Form } from "./UI/form"
 // import { Input } from "@/components/ui/input"
 import CustomInput from './CustomInput'
 import { authFormSchema } from '@/lib/utils'
-import { Loader2, Router } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 import { signIn, signUp } from '@/lib/actions/user.actions'
 import { useRouter } from 'next/navigation'
 import PlaidLink from './PlaidLink'

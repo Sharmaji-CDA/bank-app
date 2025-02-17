@@ -11,7 +11,7 @@ import {
   SelectItem,
   SelectLabel,
   SelectTrigger,
-} from "./ui/select";
+} from "./UI/select";
 import { formUrlQuery, formatAmount } from "@/lib/utils";
 
 export const BankDropdown = ({

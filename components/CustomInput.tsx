@@ -1,6 +1,6 @@
 
-import { FormControl, FormField, FormLabel, FormMessage } from './ui/form'
-import { Input } from './ui/input';
+import { FormControl, FormField, FormLabel, FormMessage } from './UI/form'
+import { Input } from './UI/input';
 
 import { Control, FieldPath } from 'react-hook-form';
 import { z } from 'zod';
